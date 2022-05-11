@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   annotations:
-    kompose.cmd: kompose convert
+    kompose.cmd: kompose convert -f ../doit/docker-compose.yml
     kompose.version: 1.26.0 (40646f47)
   creationTimestamp: null
   labels:
@@ -18,7 +18,7 @@ spec:
   template:
     metadata:
       annotations:
-        kompose.cmd: kompose convert
+        kompose.cmd: kompose convert -f ../doit/docker-compose.yml
         kompose.version: 1.26.0 (40646f47)
       creationTimestamp: null
       labels:
@@ -76,17 +76,17 @@ spec:
                 configMapKeyRef:
                   key: SECRET_KEY_BASE
                   name: env
-          image: elixir
+          image: localhost:5000/elixir
           name: elixir
           ports:
             - containerPort: 4000
           resources: {}
           volumeMounts:
             - mountPath: /doit_app_files
-              name: elixir-claim0
+              name: doitdata
       restartPolicy: Always
       volumes:
-        - name: elixir-claim0
+        - name: doitdata
           persistentVolumeClaim:
-            claimName: elixir-claim0
+            claimName: doitdata
 status: {}
