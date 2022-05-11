@@ -1,0 +1,92 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: kompose convert
+    kompose.version: 1.26.0 (40646f47)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: elixir
+  name: elixir
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: elixir
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      annotations:
+        kompose.cmd: kompose convert
+        kompose.version: 1.26.0 (40646f47)
+      creationTimestamp: null
+      labels:
+        io.kompose.service: elixir
+    spec:
+      containers:
+        - env:
+            - name: DATABASE_URL
+              valueFrom:
+                configMapKeyRef:
+                  key: DATABASE_URL
+                  name: env
+            - name: DATABASE_URL_OLD
+              valueFrom:
+                configMapKeyRef:
+                  key: DATABASE_URL_OLD
+                  name: env
+            - name: PGDATABASE
+              valueFrom:
+                configMapKeyRef:
+                  key: PGDATABASE
+                  name: env
+            - name: PGHOST
+              valueFrom:
+                configMapKeyRef:
+                  key: PGHOST
+                  name: env
+            - name: PGPASSWORD
+              valueFrom:
+                configMapKeyRef:
+                  key: PGPASSWORD
+                  name: env
+            - name: PGPORT
+              valueFrom:
+                configMapKeyRef:
+                  key: PGPORT
+                  name: env
+            - name: PGUSER
+              valueFrom:
+                configMapKeyRef:
+                  key: PGUSER
+                  name: env
+            - name: PHX_HOST
+              valueFrom:
+                configMapKeyRef:
+                  key: PHX_HOST
+                  name: env
+            - name: PORT
+              valueFrom:
+                configMapKeyRef:
+                  key: PORT
+                  name: env
+            - name: SECRET_KEY_BASE
+              valueFrom:
+                configMapKeyRef:
+                  key: SECRET_KEY_BASE
+                  name: env
+          image: elixir
+          name: elixir
+          ports:
+            - containerPort: 4000
+          resources: {}
+          volumeMounts:
+            - mountPath: /doit_app_files
+              name: elixir-claim0
+      restartPolicy: Always
+      volumes:
+        - name: elixir-claim0
+          persistentVolumeClaim:
+            claimName: elixir-claim0
+status: {}
