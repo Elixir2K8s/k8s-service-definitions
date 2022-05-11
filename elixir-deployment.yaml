@@ -3,6 +3,8 @@ kind: Deployment
 metadata:
   annotations:
     kompose.cmd: kompose convert -f ../doit/docker-compose.yml
+    kompose.service.nodeport.port: "30080"
+    kompose.service.type: nodeport
     kompose.version: 1.26.0 (40646f47)
   creationTimestamp: null
   labels:
@@ -19,6 +21,8 @@ spec:
     metadata:
       annotations:
         kompose.cmd: kompose convert -f ../doit/docker-compose.yml
+        kompose.service.nodeport.port: "30080"
+        kompose.service.type: nodeport
         kompose.version: 1.26.0 (40646f47)
       creationTimestamp: null
       labels:
