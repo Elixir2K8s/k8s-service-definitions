@@ -10,8 +10,8 @@ metadata:
   name: postgres
 spec:
   ports:
-    - name: "7000"
-      port: 7000
+    - name: "db"
+      port: 5432
       targetPort: 5432
   selector:
     io.kompose.service: postgres
