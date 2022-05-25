@@ -6,11 +6,16 @@ Created from the doit/docker-compose.yaml with the following command:
 This requires all of the Elixir2K8s projects to be in the same folder
 
 ## Prequisites
-1. Install microk8s (via snap for example)
-2. Enable microk8s local storage provider with `microk8s enable storage`
-3. Install docker and docker-compose
-4. Setup local image-registry with `docker-compose up -d`
-5. Build doit application with `docker-compose build` and push to registry with `docker-compose push`
+- Install microk8s (via snap for example)
+- Install docker and docker-compose
+
+## Setting up MicroK8S
+- Enable local storage provider with `microk8s enable storage`
+- Enable K8s dns provider with `microk8s enable dns`
+
+## Setting up image-registry and building the application
+- Setup local image-registry with `docker-compose up -d`
+- Build doit application with `docker-compose build` and push to registry with `docker-compose push`
 
 ## How to Deploy
 1. Run `kubectl apply -f`
