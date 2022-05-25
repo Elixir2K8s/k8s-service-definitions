@@ -12,6 +12,7 @@ This requires all of the Elixir2K8s projects to be in the same folder
 ## Setting up MicroK8S
 - Enable local storage provider with `microk8s enable storage`
 - Enable K8s dns provider with `microk8s enable dns`
+- Enable Ingress Controller with `microk8s enable ingress`
 
 ## Setting up image-registry and building the application
 - Setup local image-registry with `docker-compose up -d`
@@ -22,3 +23,5 @@ This requires all of the Elixir2K8s projects to be in the same folder
 2. Create database with `kubectl exec deployment.apps/elixir /app/bin/doit eval "Doit.Release.create"`
 3. Perform database migrations with `kubectl exec deployment.apps/elixir /app/bin/doit eval "Doit.Release.migrate"`
 
+## Access
+Now you should be able to access the application via [https on localhost](https://localhost)
