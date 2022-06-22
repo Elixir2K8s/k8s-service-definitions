@@ -4,7 +4,8 @@ metadata:
   name: elixir-headless
 spec:
   ports:
-    - port: 8000
+    - name: epmd
+      port: 8000
   selector:
     io.kompose.service: elixir
   clusterIP: None

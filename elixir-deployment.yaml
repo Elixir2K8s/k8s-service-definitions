@@ -65,17 +65,25 @@ spec:
                 configMapKeyRef:
                   key: PGUSER
                   name: env
-            - name: PHX_HOST
-              valueFrom:
-                configMapKeyRef:
-                  key: PHX_HOST
-                  name: env
             - name: PORT
               valueFrom:
                 configMapKeyRef:
                   key: PORT
                   name: env
             - name: SECRET_KEY_BASE
+              valueFrom:
+                configMapKeyRef:
+                  key: SECRET_KEY_BASE
+                  name: env
+            - name: MY_POD_IP
+              valueFrom:
+                fieldRef:
+                  fieldPath: status.podIP
+            - name: RELEASE_DISTRIBUTION
+              value: "name"
+            - name: RELEASE_NODE
+              value: "doit@$(MY_POD_IP)"
+            - name: RELEASE_COOKIE
               valueFrom:
                 configMapKeyRef:
                   key: SECRET_KEY_BASE
