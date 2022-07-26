@@ -88,6 +88,8 @@ spec:
                 configMapKeyRef:
                   key: SECRET_KEY_BASE
                   name: env
+            - name: PHX_HOST
+              value: "localhost"
           image: localhost:5000/elixir
           name: elixir
           ports:
